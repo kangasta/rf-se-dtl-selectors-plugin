@@ -1,0 +1,22 @@
+language: python
+python:
+- '3.6'
+- '3.7'
+- '3.8'
+services:
+- docker
+install:
+- pip install -r requirements.txt
+script:
+- pycodestyle TestingLibrarySelectorsPlugin
+- pylint -E --enable=invalid-name,unused-import,useless-object-inheritance TestingLibrarySelectorsPlugin
+- docker build . -t atest
+- docker run --rm atest
+deploy:
+  provider: pypi
+  user: __token__
+  password:
+    secure: 6aolgHxGg81Y7dmD8IzVnFeWdwtmtjdzerL3XwrTvBgdav5DvSQw2BOAelk7WI/D6XB+qMfwaQMzSLyjVvwTio6H7BaUZ1ErUfJtlsZV8cuwHxq/KsD3vhZzygqIlkitX53RMjvw5cS07dUR42EhDuf82yzyfQ/hfGO7ZzsQFwad4wZoSvVnzDwOs4IqyMBAU2aqGfjXpy/D8LEeqPMbQWRAWq+9AR5fHFAFhSahKTS/iAdEgoair6jd4A4IW6RJoD7RamcFB649EU7bEyI/X7xNjdZx8fjKtlyLl2zGjcuheZd5rK3PikfJK4qBdX3OqmEYBxWmTCx1+XlODdvJY0/seguqhA1vtNUIiWV8Qsx+9s5GMPXPFRT1vsEjSBRtUB4OSD4opgCHpCbeOIZIzUwsn2iAiB5Qj+mBZ0uOVlBpSugkoRca3iLK3Ip67Jw4bDRn8jc8ZZgys+4OfHEBIVMWvFsHBAT8T5YhL6lCHLwlnwvwdHKoBJkPZVxze8cFURW62SWhUv9uJZLueL5tZIr/rvs27BcONL4LItj9/L9UPE9OvkxiJDXlF8ON73fWYITrbMMRtKXtdHsIpTlyV3kbMC7GjaRSqg1ElJLCLQkiIMStuixQwwOdl+qyFaft/XdCVJev5uuQW+72u+8bNdExzM6AweByxbp4qnlHimQ=
+  on:
+    tags: true
+    python: 3.7
