@@ -1,1 +1,5 @@
 .
+
+# Static analysis
+pycodestyle
+pylint
