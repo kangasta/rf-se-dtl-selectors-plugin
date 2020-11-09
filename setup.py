@@ -14,7 +14,7 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="TestingLibrarySelectorsPlugin",
+    name="rf-se-dtl-selectors-plugin",
     version=version,
     author="Toni Kangas",
     description="DOM testing library inspired selectors for Robot Framework SeleniumLibrary.",

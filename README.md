@@ -1,4 +1,4 @@
-# rf-se-dtl-selectors
+# rf-se-dtl-selectors-plugin
 
 [DOM testing library](https://testing-library.com/) inspired selectors for Robot Framework [SeleniumLibrary](https://robotframework.org/SeleniumLibrary/).
 
