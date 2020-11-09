@@ -1,6 +1,19 @@
 # rf-se-dtl-selectors-plugin
 
+[![Build Status](https://travis-ci.org/kangasta/rf-se-dtl-selectors-plugin.svg?branch=main)](https://travis-ci.org/kangasta/rf-se-dtl-selectors-plugin)
+
 [DOM testing library](https://testing-library.com/) inspired selectors for Robot Framework [SeleniumLibrary](https://robotframework.org/SeleniumLibrary/).
+
+## Usage
+
+In order to use selector provided by this plugin, load `SeleniumLibrary` with `TestingLibrarySelectorsPlugin` in the plugin array:
+
+```robot
+*** Settings ***
+Library         SeleniumLibrary    plugins=TestingLibrarySelectorsPlugin
+```
+
+The plugin provides `label`, `testid`, `text`, and `title` selectors. See [acceptance_tests](./acceptance_tests) directory for usage examples.
 
 ## Testing
 
