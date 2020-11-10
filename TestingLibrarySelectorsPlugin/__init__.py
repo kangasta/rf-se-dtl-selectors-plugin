@@ -34,6 +34,7 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
         self.element_finder = ElementFinder(ctx)
 
         for name, function in [
+            ('alttext', self._find_by_alt_text,),
             ('label', self._find_by_label,),
             ('placeholder', self._find_by_placeholder,),
             ('testid', self._find_by_testid,),
@@ -48,10 +49,20 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
             parent,
             criteria,
             tag,
-            constraints):
-        locator = f'//*[@{attribute}="{criteria}"]'
+            constraints,
+            limit_tags=None):
+        if not limit_tags:
+            limit_tags = ['*']
+
+        locator = '|'.join(
+            f'//{i}[@{attribute}="{criteria}"]' for i in limit_tags)
         return self.element_finder.find(
             locator, tag=tag, parent=_get_parent(parent), required=False)
+
+    def _find_by_alt_text(self, parent, criteria, tag, constraints):
+        return self._find_by_attribute(
+            'alt', parent, criteria, tag, constraints, limit_tags=[
+                'img', 'input', 'area'])
 
     def _find_by_label(self, parent, criteria, tag, constraints):
         label = f'//label[normalize-space(text())="{criteria}"]'

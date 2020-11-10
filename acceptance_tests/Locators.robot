@@ -5,6 +5,13 @@ Suite Setup     Open test target
 Suite Teardown  Close browser
 
 *** Test Cases ***
+Find by alt text
+    FOR  ${i}  IN RANGE  1  4
+        Element Attribute Value Should Be  alttext:By alt text test${i}  data-testid  by-alt-text-test${i}
+    END
+    Run keyword and expect error  *
+    ...  Element Attribute Value Should Be  alttext:By alt text test4  data-testid  by-alt-text-test4
+
 Find by label
     FOR  ${i}  IN RANGE  1  6
         Element Attribute Value Should Be  label:By label test${i}  data-testid  by-label-test${i}
