@@ -21,7 +21,7 @@ In order to use selector provided by this plugin, load `SeleniumLibrary` with `T
 Library         SeleniumLibrary    plugins=TestingLibrarySelectorsPlugin
 ```
 
-The plugin provides `label`, `testid`, `text`, and `title` selectors. See [acceptance_tests](./acceptance_tests) directory for usage examples.
+The plugin provides `alttext`, `label`, `placeholder`, `testid`, `text`, and `title` selectors. See [acceptance_tests](./acceptance_tests) directory for usage examples.
 
 ## Testing
 

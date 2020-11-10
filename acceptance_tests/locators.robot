@@ -1,6 +1,5 @@
 *** Settings ***
-Library         OperatingSystem
-Library         SeleniumLibrary    plugins=TestingLibrarySelectorsPlugin
+Resource        ${CURDIR}/resources/common.robot
 Suite Setup     Open test target
 Suite Teardown  Close browser
 
@@ -30,10 +29,3 @@ Find by title
     Element Attribute Value Should Be  title:Click to test by title  data-testid  by-title-test1
     Click button  title:Click to test by title
     Element Attribute Value Should Be  title:By title test2  data-testid  by-title-test2
-
-
-*** Keywords ***
-Open test target
-    ${browser}=  Get environment variable  BROWSER  headlesschrome
-    ${options}=  Get environment variable  BROWSER_OPTIONS  add_argument("--no-sandbox"); add_argument("--disable-gpu")
-    Open browser  file://${CURDIR}/target.html  browser=${browser}  options=${options}
