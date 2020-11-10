@@ -46,7 +46,9 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
     def _find_by_label(self, parent, criteria, tag, constraints):
         label = f'//label[normalize-space(text())="{criteria}"]'
         input_in_label = f'{label}/input'
-        text_in_label_child = f'//label/*[normalize-space(text())="{criteria}"]/following-sibling::input'
+        text_in_label_child = (
+            f'//label/*[normalize-space(text())="{criteria}"]/'
+            'following-sibling::input')
         aria_label = f'//input[@aria-label="{criteria}"]'
 
         locator = f'{input_in_label}|{text_in_label_child}|{aria_label}'
@@ -84,7 +86,8 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
 
     def _find_by_title(self, parent, criteria, tag, constraints):
         title_attribute = f'//*[@title="{criteria}"]'
-        svg_title = f'//*[name()="svg"]/*[name()="title" and text()="{criteria}"]'
+        svg_title = (
+            f'//*[name()="svg"]/*[name()="title" and text()="{criteria}"]')
 
         locator = f'{title_attribute}|{svg_title}'
         return self.element_finder.find(
