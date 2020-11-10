@@ -1,5 +1,8 @@
 .
 
+# Acceptance tests
+lxml
+
 # Static analysis
 pycodestyle
 pylint
