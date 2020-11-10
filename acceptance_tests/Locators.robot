@@ -10,6 +10,9 @@ Find by label
         Element Attribute Value Should Be  label:By label test${i}  data-testid  by-label-test${i}
     END
 
+Find by placeholder
+    Element Attribute Value Should Be  placeholder:By placeholder test  data-testid  by-placeholder-test
+
 Find by testid
     Element Text Should Be  testid:by-testid-test  By testid test
 

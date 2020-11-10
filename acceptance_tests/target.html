@@ -11,45 +11,57 @@
   <div data-testid="by-testid-test">By testid test</div>
 
   <h2>Text</h2>
-  <span data-testid="by-text-test">By text test</span>
+  <div>
+    <span data-testid="by-text-test">By text test</span>
+  </div>
 
   <h2>Title</h2>
-  <button data-testid="by-title-test1" title="Click to test by title">
-    By title test1
-  </button>
+  <div>
+    <button data-testid="by-title-test1" title="Click to test by title">
+      By title test1
+    </button>
+  </div>
+
+  <div>
+    <svg>
+      <title data-testid="by-title-test2">By title test2</title>
+      <g>
+        <path />
+      </g>
+    </svg>
+  </div>
+
+  <h2>Label</h2>
+  <div>
+    <label for="by-label-test1">By label test1</label>
+    <input id="by-label-test1" data-testid="by-label-test1" />
+  </div>
+
+  <div>
+    <label id="by-label-test2">By label test2</label>
+    <input aria-labelledby="by-label-test2" data-testid="by-label-test2" />
+  </div>
+
+  <div>
+    <label>By label test3 <input data-testid="by-label-test3" /></label>
+  </div>
+
+  <div>
+    <label>
+      <span>By label test4</span>
+      <input data-testid="by-label-test4" />
+    </label>
+  </div>
+
+  <div>
+    <input aria-label="By label test5" data-testid="by-label-test5" />
+  </div>
+
+  <h2>Placeholder</h2>
+
+  <div>
+    <input data-testid="by-placeholder-test" placeholder="By placeholder test" />
+  </div>
 </body>
-
-<svg>
-  <title data-testid="by-title-test2">By title test2</title>
-  <g>
-    <path />
-  </g>
-</svg>
-
-<h2>Label</h2>
-<div>
-  <label for="by-label-test1">By label test1</label>
-  <input id="by-label-test1" data-testid="by-label-test1" />
-</div>
-
-<div>
-  <label id="by-label-test2">By label test2</label>
-  <input aria-labelledby="by-label-test2" data-testid="by-label-test2" />
-</div>
-
-<div>
-  <label>By label test3 <input data-testid="by-label-test3" /></label>
-</div>
-
-<div>
-  <label>
-    <span>By label test4</span>
-    <input data-testid="by-label-test4" />
-  </label>
-</div>
-
-<div>
-  <input aria-label="By label test5" data-testid="by-label-test5" />
-</div>
 
 </html>

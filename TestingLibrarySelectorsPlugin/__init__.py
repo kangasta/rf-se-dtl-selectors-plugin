@@ -35,11 +35,23 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
 
         for name, function in [
             ('label', self._find_by_label,),
+            ('placeholder', self._find_by_placeholder,),
             ('testid', self._find_by_testid,),
             ('text', self._find_by_text,),
             ('title', self._find_by_title,),
         ]:
             self.element_finder.register(name, function, persist=True)
+
+    def _find_by_attribute(
+            self,
+            attribute,
+            parent,
+            criteria,
+            tag,
+            constraints):
+        locator = f'//*[@{attribute}="{criteria}"]'
+        return self.element_finder.find(
+            locator, tag=tag, parent=_get_parent(parent), required=False)
 
     def _find_by_label(self, parent, criteria, tag, constraints):
         label = f'//label[normalize-space(text())="{criteria}"]'
@@ -70,10 +82,13 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
         return self.element_finder.find(
             locator, tag=tag, parent=_get_parent(parent), required=False)
 
+    def _find_by_placeholder(self, parent, criteria, tag, constraints):
+        return self._find_by_attribute(
+            'placeholder', parent, criteria, tag, constraints)
+
     def _find_by_testid(self, parent, criteria, tag, constraints):
-        locator = f'//*[@data-testid="{criteria}"]'
-        return self.element_finder.find(
-            locator, tag=tag, parent=_get_parent(parent), required=False)
+        return self._find_by_attribute(
+            'data-testid', parent, criteria, tag, constraints)
 
     def _find_by_text(self, parent, criteria, tag, constraints):
         locator = f'//*[normalize-space(text())="{criteria}"]'
