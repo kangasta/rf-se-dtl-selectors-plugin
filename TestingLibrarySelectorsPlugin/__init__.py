@@ -1,5 +1,3 @@
-from robot.api import logger
-
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.event_firing_webdriver import (
     EventFiringWebElement
@@ -53,10 +51,10 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
 
         locator = f'{input_in_label}|{text_in_label_child}|{aria_label}'
 
-        try:
-            elements = self.element_finder.find(
-                label, tag=tag, parent=_get_parent(parent))
+        elements = self.element_finder.find(
+            label, tag=tag, parent=_get_parent(parent), required=False)
 
+        if elements:
             for_l = _filter_out_nones(
                 e.get_attribute('for') for e in _as_array(elements))
             if for_l:
@@ -68,21 +66,19 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
             if id_l:
                 labelledby = f'//input[@aria-labelledby="{" or ".join(id_l)}"]'
                 locator = f'{labelledby}|{locator}'
-        except ElementNotFound:
-            pass
 
         return self.element_finder.find(
-            locator, tag=tag, parent=_get_parent(parent))
+            locator, tag=tag, parent=_get_parent(parent), required=False)
 
     def _find_by_testid(self, parent, criteria, tag, constraints):
         locator = f'//*[@data-testid="{criteria}"]'
         return self.element_finder.find(
-            locator, tag=tag, parent=_get_parent(parent))
+            locator, tag=tag, parent=_get_parent(parent), required=False)
 
     def _find_by_text(self, parent, criteria, tag, constraints):
         locator = f'//*[normalize-space(text())="{criteria}"]'
         return self.element_finder.find(
-            locator, tag=tag, parent=_get_parent(parent))
+            locator, tag=tag, parent=_get_parent(parent), required=False)
 
     def _find_by_title(self, parent, criteria, tag, constraints):
         title_attribute = f'//*[@title="{criteria}"]'
@@ -91,4 +87,4 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
 
         locator = f'{title_attribute}|{svg_title}'
         return self.element_finder.find(
-            locator, tag=tag, parent=_get_parent(parent))
+            locator, tag=tag, parent=_get_parent(parent), required=False)

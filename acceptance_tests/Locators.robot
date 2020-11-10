@@ -18,6 +18,7 @@ Find by text
 
 Find by title
     Element Attribute Value Should Be  title:Click to test by title  data-testid  by-title-test1
+    Click button  title:Click to test by title
     Element Attribute Value Should Be  title:By title test2  data-testid  by-title-test2
 
 
