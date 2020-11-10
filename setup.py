@@ -20,7 +20,7 @@ setuptools.setup(
     description="DOM testing library inspired selectors for Robot Framework SeleniumLibrary.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/kangasta/rf-se-dtl-selectors",
+    url="https://github.com/kangasta/rf-se-dtl-selectors-plugin",
     packages=setuptools.find_packages(),
     install_requires=[
         "robotframework-seleniumlibrary~=4.0",

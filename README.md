@@ -4,6 +4,14 @@
 
 [DOM testing library](https://testing-library.com/) inspired selectors for Robot Framework [SeleniumLibrary](https://robotframework.org/SeleniumLibrary/).
 
+## Installation
+
+To install this plugin from [PyPI](https://pypi.org/project/rf-se-dtl-selectors-plugin/), run:
+
+```bash
+pip install rf-se-dtl-selectors-plugin
+```
+
 ## Usage
 
 In order to use selector provided by this plugin, load `SeleniumLibrary` with `TestingLibrarySelectorsPlugin` in the plugin array:
