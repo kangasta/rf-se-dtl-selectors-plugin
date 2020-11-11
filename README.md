@@ -21,7 +21,21 @@ In order to use selector provided by this plugin, load `SeleniumLibrary` with `T
 Library         SeleniumLibrary    plugins=TestingLibrarySelectorsPlugin
 ```
 
-The plugin provides `alttext`, `label`, `placeholder`, `testid`, `text`, and `title` selectors. See [acceptance_tests](./acceptance_tests) directory for usage examples.
+The plugin provides `alttext`, `label`, `placeholder`, `testid`, `text`, and `title` selectors. See [acceptance_tests](./acceptance_tests) directory for usage examples. These locators are automatically registered when the plugin is initialized.
+
+All attribute and text values are passed to `normalize-space()` XPath function before comparison with the given value.
+
+In addition to the locator strategies, this plugin provides `Get Xpath` keyword to get the XPath expression for given locator. For example:
+
+```robot
+*** Settings ***
+Library         SeleniumLibrary    plugins=TestingLibrarySelectorsPlugin
+
+*** Test Cases ***
+Find elements with xpath
+    ${xpath}=  Get Xpath  placeholder:Search
+    Click button  xpath:${xpath}
+```
 
 ## Testing
 
