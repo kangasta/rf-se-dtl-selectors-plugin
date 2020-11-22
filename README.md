@@ -19,6 +19,10 @@ In order to use selector provided by this plugin, load `SeleniumLibrary` with `T
 ```robot
 *** Settings ***
 Library         SeleniumLibrary    plugins=TestingLibrarySelectorsPlugin
+
+*** Test cases ***
+Click input element
+    Click element  placeholder:Search
 ```
 
 The plugin provides `alttext`, `label`, `placeholder`, `testid`, `text`, and `title` selectors. See [acceptance_tests](./acceptance_tests) directory for usage examples. These locators are automatically registered when the plugin is initialized.
@@ -34,7 +38,7 @@ Library         SeleniumLibrary    plugins=TestingLibrarySelectorsPlugin
 *** Test Cases ***
 Find elements with xpath
     ${xpath}=  Get Xpath  placeholder:Search
-    Click button  xpath:${xpath}
+    Click element  xpath:${xpath}
 ```
 
 ## Testing
