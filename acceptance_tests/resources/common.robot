@@ -1,6 +1,7 @@
 *** Settings ***
-Library         OperatingSystem
-Library         SeleniumLibrary    plugins=TestingLibrarySelectorsPlugin
+Library     OperatingSystem
+Library     SeleniumLibrary
+...         plugins=TestingLibrarySelectorsPlugin
 
 *** Keywords ***
 Open test target

@@ -80,6 +80,23 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
 
         return _find_function
 
+    def _get_xpath_comparison(self, value, criteria):
+        start_wild = criteria.startswith('*')
+        end_wild = criteria.endswith('*')
+        normalized = f'normalize-space({value})'
+
+        if start_wild and end_wild:
+            return f'contains({normalized}, "{criteria[1:-1]}")'
+        elif start_wild:
+            # ends-with is only included in XPath2
+            return (
+                f'substring({normalized}, string-length({normalized}) -'
+                f'string-length("{criteria[1:]}") + 1) = "{criteria[1:]}"')
+        elif end_wild:
+            return f'starts-with({normalized}, "{criteria[:-1]}")'
+
+        return f'{normalized}="{criteria}"'
+
     def _get_xpath_function(self, value, criteria):
         re_match = match(r'/(.+)/([smix]*)', criteria)
 
@@ -97,7 +114,7 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
 
             return f'matches({value}, "{regexp}"{flags_str})'
 
-        return f'normalize-space({value})="{criteria}"'
+        return self._get_xpath_comparison(value, criteria)
 
     def _get_attribute_xpath(self, attribute, criteria, limit_tags=None):
         if not limit_tags:
@@ -118,7 +135,8 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
         text_in_label_child = (
             f'//label/*[{self._get_xpath_function("text()", criteria)}]/'
             'following-sibling::input')
-        aria_label = f'//input[@aria-label="{criteria}"]'
+        aria_label = (
+            f'//input[{self._get_xpath_comparison("@aria-label", criteria)}]')
 
         locator = f'{input_in_label}|{text_in_label_child}|{aria_label}'
 
