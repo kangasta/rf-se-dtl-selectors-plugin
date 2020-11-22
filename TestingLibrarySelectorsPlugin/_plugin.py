@@ -72,7 +72,11 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
 
             self._clear_warnings()
             return self.element_finder.find(
-                locator, tag=tag, parent=_get_parent(parent), required=False)
+                locator,
+                tag=tag,
+                parent=_get_parent(parent),
+                first_only=False,
+                required=False)
 
         return _find_function
 
@@ -119,7 +123,11 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
         locator = f'{input_in_label}|{text_in_label_child}|{aria_label}'
 
         elements = self.element_finder.find(
-            label, tag=tag, parent=_get_parent(parent), required=False)
+            label,
+            tag=tag,
+            parent=_get_parent(parent),
+            first_only=False,
+            required=False)
 
         if elements:
             for_l = _filter_out_nones(
