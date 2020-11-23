@@ -88,8 +88,8 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
             self._warn(
                 'The value obtained with XPath expression will be passed '
                 'through normalize-space function. Thus, the expected value '
-                'should not contain consecutive whitespace characters, leading '
-                'or trailing whitespace, nor any line breaks or tabs.'
+                'should not contain consecutive whitespace characters, '
+                'leading or trailing whitespace, nor any line breaks or tabs.'
             )
 
         if start_wild and end_wild:
@@ -179,7 +179,8 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
         return f'//*[{self._get_xpath_function("text()", criteria)}]'
 
     def _get_title_xpath(self, parent, criteria, tag, constraints):
-        title_attribute = f'//*[@title="{criteria}"]'
+        title_attribute = (
+            f'//*[{self._get_xpath_comparison("@title", criteria)}]')
         comparison = self._get_xpath_function("text()", criteria)
         svg_title = (
             '//*[name()="svg"]/'
