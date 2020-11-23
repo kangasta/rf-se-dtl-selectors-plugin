@@ -12,7 +12,7 @@ Starts with
 
 Ends with
     [Template]  Check element count for locator
-    testid:*test1  3
+    testid:*test1  4
     title:*title test2  1
 
 Contains

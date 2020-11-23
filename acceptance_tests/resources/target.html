@@ -7,8 +7,6 @@
 
 <body>
   <h1>TestingLibrarySelectorsPlugin test target</h1>
-  <h2>Testid</h2>
-  <div data-testid="by-testid-test">By testid test</div>
 
   <h2>Alt Text</h2>
   <div>
@@ -23,27 +21,6 @@
   <div>
     <!-- This should not be found by alt text as it has wrong element type -->
     <div data-testid="by-alt-text-test4" alt="By alt text test4"></div>
-  </div>
-
-  <h2>Text</h2>
-  <div>
-    <span data-testid="by-text-test">By text test</span>
-  </div>
-
-  <h2>Title</h2>
-  <div>
-    <button data-testid="by-title-test1" title="Click to test by title">
-      By title test1
-    </button>
-  </div>
-
-  <div>
-    <svg>
-      <title data-testid="by-title-test2">By title test2</title>
-      <g>
-        <path />
-      </g>
-    </svg>
   </div>
 
   <h2>Label</h2>
@@ -76,6 +53,35 @@
   <div>
     <input data-testid="by-placeholder-test" placeholder="By placeholder test" />
   </div>
+
+  <h2>Testid</h2>
+  <div data-testid="by-testid-test">By testid test</div>
+
+  <h2>Text</h2>
+  <div>
+    <span data-testid="by-text-test">By text test</span>
+  </div>
+
+  <h2>Title</h2>
+  <div>
+    <button data-testid="by-title-test1" title="Click to test by title">
+      By title test1
+    </button>
+  </div>
+
+  <div>
+    <svg>
+      <title data-testid="by-title-test2">By title test2</title>
+      <g>
+        <path />
+      </g>
+    </svg>
+  </div>
+
+  <h2>Normalized whitespace</h2>
+  <div data-testid="normalize-space-test1" title=" leading whitespace"> leading whitespace</div>
+  <div data-testid="normalize-space-test2" title="trailing whitespace ">trailing whitespace </div>
+  <div data-testid="normalize-space-test3" title="consecutive  whitespace ">consecutive  whitespace </div>
 </body>
 
 </html>
