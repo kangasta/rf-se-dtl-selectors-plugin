@@ -1,4 +1,4 @@
-from re import match
+from re import match, search, DOTALL
 
 from robot.api.deco import keyword
 from robot.api.logger import warn
@@ -84,6 +84,13 @@ class TestingLibrarySelectorsPlugin(LibraryComponent):
         start_wild = criteria.startswith('*')
         end_wild = criteria.endswith('*')
         normalized = f'normalize-space({value})'
+        if search(r'\s\s|^\s|\s$|\t|\n', criteria, DOTALL):
+            self._warn(
+                'The value obtained with XPath expression will be passed '
+                'through normalize-space function. Thus, the expected value '
+                'should not contain consecutive whitespace characters, leading '
+                'or trailing whitespace, nor any line breaks or tabs.'
+            )
 
         if start_wild and end_wild:
             return f'contains({normalized}, "{criteria[1:-1]}")'

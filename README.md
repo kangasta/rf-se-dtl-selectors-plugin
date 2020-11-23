@@ -56,15 +56,29 @@ Run static analysis with:
 pylint -E --enable=invalid-name,unused-import,useless-object-inheritance TestingLibrarySelectorsPlugin
 ```
 
+Run unit tests:
+
+```bash
+# Run unit tests
+python3 -m unittest discover -s unit_tests/
+
+# Run unit tests with coverage analysis
+coverage run \
+    --branch \
+    --source TestingLibrarySelectorsPlugin/ \
+    -m unittest discover -s unit_tests/
+coverage report -m
+```
+
 Run acceptance tests in Docker container:
 
 ```bash
 # Build image
 docker build . -t atest
 
-# Run tests
+# Run acceptance tests
 docker run --rm atest
 
-# Run tests and get test output to ./out
+# Run acceptance tests and get test output to ./out
 docker run -v $(pwd)/out:/out --rm atest -d /out -L TRACE:INFO
 ```

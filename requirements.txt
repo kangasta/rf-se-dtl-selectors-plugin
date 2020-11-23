@@ -6,3 +6,6 @@ lxml
 # Static analysis
 pycodestyle
 pylint
+
+# Unittests
+coverage

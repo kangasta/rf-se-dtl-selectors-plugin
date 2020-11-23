@@ -11,6 +11,8 @@ install:
 script:
 - pycodestyle TestingLibrarySelectorsPlugin
 - pylint -E --enable=invalid-name,unused-import,useless-object-inheritance TestingLibrarySelectorsPlugin
+- coverage run --branch --source TestingLibrarySelectorsPlugin/ -m unittest discover -s unit_tests/
+- coverage report -m
 - docker build . -t atest
 - docker run --rm atest
 deploy:
