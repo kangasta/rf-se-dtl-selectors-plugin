@@ -23,7 +23,7 @@ setuptools.setup(
     url="https://github.com/kangasta/rf-se-dtl-selectors-plugin",
     packages=setuptools.find_packages(),
     install_requires=[
-        "robotframework-seleniumlibrary~=4.0",
+        "robotframework-seleniumlibrary~=6.0",
     ],
     python_requires='>=3.6',
     classifiers=[
